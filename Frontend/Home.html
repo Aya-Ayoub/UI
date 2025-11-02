@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+    <link href="dist/output.css" rel="stylesheet">
+  </head>
+
+  <body class="bg-black text-white">
+    <section class="relative h-[75vh] md:h-[80vh] overflow-hidden">
+
+      <header class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-30">
+        <img src="C:\UIProject\Phase2trial\images\logo.png" alt="CineHaven Logo" class="h-14 w-auto drop-shadow-lg">
+        <nav class="space-x-8 text-lg hidden md:flex mr-12">
+          <a href="home.html" class="text-red-500 font-semibold drop-shadow-lg">Home</a>
+          <a href="list.html" class="hover:text-red-500 drop-shadow-lg">Movies</a>
+          <a href="dashboard.html" class="hover:text-red-500 drop-shadow-lg">Dashboard</a>
+          <a href="#" class="hover:opacity-80 drop-shadow-lg">
+          <img src="C:\UIProject\Phase2trial\images\search.png" alt="Search" class="h-6 w-6 inline-block"></a>
+          <a href="profile.html" class="hover:text-red-500 drop-shadow-lg">Profile</a>
+          <a href="form.html" class="hover:text-red-500 drop-shadow-lg">Add Movie</a>
+        </nav>
+      </header>
+
+      <img src="C:\UIProject\Phase2trial\images\Slide1.jpg" 
+           alt="Movie Slide" 
+           class="absolute inset-0 w-full h-full object-cover object-center z-0">
+
+      <div class="absolute inset-0 bg-black opacity-30 z-10"></div>
+      <div class="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-black to-transparent z-20"></div>
+
+      <div class="absolute top-1/4 left-10 z-30 text-white max-w-lg">
+        <p class="text-xl md:text-2xl mb-1 drop-shadow-md">Duration: 2h 15m</p>
+        <h2 class="text-5xl md:text-6xl font-extrabold mb-2 drop-shadow-xl">Rampage</h2>
+        <p class="text-sm md:text-base mb-4 drop-shadow-md">
+          An Action movie with The Rock and a big gorilla monkey planning to save the earth!
+        </p>
+        <p class="text-xl md:text-2xl mb-2 drop-shadow-md text-yellow-400">
+          ★★★★★
+        </p>
+        <p class="text-xl md:text-2xl mb-4 drop-shadow-md">Release Year: 1990</p>
+
+        <div class="flex space-x-4">
+          <button class="bg-red-600 hover:bg-black text-white hover:text-red-600 font-semibold px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition duration-300 border border-transparent hover:border-red-600">
+            Watch
+          </button>
+          <button class="bg-black border border-red-600 hover:bg-red-600 hover:text-white text-red-500 font-semibold px-6 py-2 rounded-lg shadow-md transition duration-300">
+            + Add to Watchlist
+          </button>
+        </div>
+      </div>
+
+      <div class="absolute bottom-5 right-5 flex space-x-2 z-30">
+        <div class="w-10 h-10 border-2 border-red-600 rounded-full flex items-center justify-center cursor-pointer text-red-600 text-2xl drop-shadow-lg hover:bg-red-600 hover:text-white transition duration-300">
+          &#10094;
+        </div>
+        <div class="w-10 h-10 border-2 border-red-600 rounded-full flex items-center justify-center cursor-pointer text-red-600 text-2xl drop-shadow-lg hover:bg-red-600 hover:text-white transition duration-300">
+          &#10095;
+        </div>
+      </div>
+
+      <h2 class="absolute bottom-8 left-10 text-3xl md:text-4xl font-bold text-red-500 drop-shadow-lg z-30">
+        Popular Movies
+      </h2>
+    </section>
+
+    <main class="p-4 space-y-10 relative z-10">
+
+      <section>
+        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-4">
+
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <a href="details.html">
+                <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110 cursor-pointer">
+            </a>
+            <div class="flex items-center justify-between px-1 mt-1">
+                <div class="text-center flex-1">
+                <p class="text-sm font-semibold">Iron Man 1</p>
+                <p class="text-xs text-yellow-400">★★★★★</p>
+                </div>
+                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
+                +
+                </button>
+            </div>
+          </div>
+
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
+            <div class="flex items-center justify-between px-1 mt-1">
+                <div class="text-center flex-1">
+                <p class="text-sm font-semibold">Iron Man 1</p>
+                <p class="text-xs text-yellow-400">★★★★★</p>
+                </div>
+                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
+                +
+                </button>
+            </div>
+          </div>
+
+           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
+            <div class="flex items-center justify-between px-1 mt-1">
+                <div class="text-center flex-1">
+                <p class="text-sm font-semibold">Iron Man 1</p>
+                <p class="text-xs text-yellow-400">★★★★★</p>
+                </div>
+                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
+                +
+                </button>
+            </div>
+           </div>
+
+           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
+            <div class="flex items-center justify-between px-1 mt-1">
+                <div class="text-center flex-1">
+                <p class="text-sm font-semibold">Iron Man 1</p>
+                <p class="text-xs text-yellow-400">★★★★★</p>
+                </div>
+                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
+                +
+                </button>
+            </div>
+           </div>
+
+           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
+            <div class="flex items-center justify-between px-1 mt-1">
+                <div class="text-center flex-1">
+                <p class="text-sm font-semibold">Iron Man 1</p>
+                <p class="text-xs text-yellow-400">★★★★★</p>
+                </div>
+                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
+                +
+                </button>
+            </div>
+           </div>
+
+           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
+            <div class="flex items-center justify-between px-1 mt-1">
+                <div class="text-center flex-1">
+                <p class="text-sm font-semibold">Iron Man 1</p>
+                <p class="text-xs text-yellow-400">★★★★★</p>
+                </div>
+                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
+                +
+                </button>
+            </div>
+           </div>
+        </div>
+      </section>
+
+
+      <section class="mt-10">
+        <h2 class="text-2xl font-semibold mb-4 text-red-500">Movies You May Like</h2>
+        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                    <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
+            <div class="flex items-center justify-between px-1 mt-1">
+                <div class="text-center flex-1">
+                <p class="text-sm font-semibold">Iron Man 1</p>
+                <p class="text-xs text-yellow-400">★★★★★</p>
+                </div>
+                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
+                +
+                </button>
+            </div>
+          </div>
+
+           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
+            <div class="flex items-center justify-between px-1 mt-1">
+                <div class="text-center flex-1">
+                <p class="text-sm font-semibold">Iron Man 1</p>
+                <p class="text-xs text-yellow-400">★★★★★</p>
+                </div>
+                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
+                +
+                </button>
+            </div>
+           </div>
+
+           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
+            <div class="flex items-center justify-between px-1 mt-1">
+                <div class="text-center flex-1">
+                <p class="text-sm font-semibold">Iron Man 1</p>
+                <p class="text-xs text-yellow-400">★★★★★</p>
+                </div>
+                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
+                +
+                </button>
+            </div>
+           </div>
+
+           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
+            <div class="flex items-center justify-between px-1 mt-1">
+                <div class="text-center flex-1">
+                <p class="text-sm font-semibold">Iron Man 1</p>
+                <p class="text-xs text-yellow-400">★★★★★</p>
+                </div>
+                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
+                +
+                </button>
+            </div>
+           </div>
+
+           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
+            <div class="flex items-center justify-between px-1 mt-1">
+                <div class="text-center flex-1">
+                <p class="text-sm font-semibold">Iron Man 1</p>
+                <p class="text-xs text-yellow-400">★★★★★</p>
+                </div>
+                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
+                +
+                </button>
+            </div>
+           </div>
+           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
+            <div class="flex items-center justify-between px-1 mt-1">
+                <div class="text-center flex-1">
+                <p class="text-sm font-semibold">Iron Man 1</p>
+                <p class="text-xs text-yellow-400">★★★★★</p>
+                </div>
+                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
+                +
+                </button>
+            </div>
+           </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="p-4 text-center text-gray-500 border-t border-red-700 mt-8">
+      © 2025 CineHaven
+    </footer>
+  </body>
+</html>
