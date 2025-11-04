@@ -11,4 +11,4 @@ CineHaven is a web application that allows users to watch popular movies and vie
 
 ## Project Documents
 
-- [UI/UX Design](./Docs/CineHaven Figma.pdf)
+- [UI/UX Design](./Docs/CineHaven%20Figma.pdf)
