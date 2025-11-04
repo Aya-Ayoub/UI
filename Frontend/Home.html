@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homepage</title>
     <link href="dist/output.css" rel="stylesheet">
+
   </head>
 
   <body class="bg-black text-white">
     <section class="relative h-[75vh] md:h-[80vh] overflow-hidden">
 
       <header class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-30">
-        <img src="C:\UIProject\Phase2trial\images\logo.png" alt="CineHaven Logo" class="h-14 w-auto drop-shadow-lg">
+        <img src="images\logo.png" alt="CineHaven Logo" class="h-14 w-auto drop-shadow-lg">
         <nav class="space-x-8 text-lg hidden md:flex mr-12">
           <a href="home.html" class="text-red-500 font-semibold drop-shadow-lg">Home</a>
           <a href="list.html" class="hover:text-red-500 drop-shadow-lg">Movies</a>
@@ -23,16 +24,25 @@
         </nav>
       </header>
 
-      <img src="C:\UIProject\Phase2trial\images\Slide1.jpg" 
+      <img src="images\Rampage.jpg" 
            alt="Movie Slide" 
            class="absolute inset-0 w-full h-full object-cover object-center z-0">
 
-      <div class="absolute inset-0 bg-black opacity-30 z-10"></div>
       <div class="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-black to-transparent z-20"></div>
+      <div class="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-black to-transparent z-20"></div>
 
       <div class="absolute top-1/4 left-10 z-30 text-white max-w-lg">
         <p class="text-xl md:text-2xl mb-1 drop-shadow-md">Duration: 2h 15m</p>
         <h2 class="text-5xl md:text-6xl font-extrabold mb-2 drop-shadow-xl">Rampage</h2>
+        <div class="flex flex-wrap gap-2 mb-4 justify-start">
+          <span class="inline-block bg-red-600 text-white text-sm font-semibold px-3 py-1 rounded-full">
+            Action
+          </span>
+          <span class="inline-block bg-red-600 text-white text-sm font-semibold px-3 py-1 rounded-full">
+            Sci-Fi
+          </span>
+        </div>
+
         <p class="text-sm md:text-base mb-4 drop-shadow-md">
           An Action movie with The Rock and a big gorilla monkey planning to save the earth!
         </p>
@@ -51,7 +61,7 @@
         </div>
       </div>
 
-      <div class="absolute bottom-5 right-5 flex space-x-2 z-30">
+      <div class="absolute bottom-8 right-5 flex space-x-2 z-30">
         <div class="w-10 h-10 border-2 border-red-600 rounded-full flex items-center justify-center cursor-pointer text-red-600 text-2xl drop-shadow-lg hover:bg-red-600 hover:text-white transition duration-300">
           &#10094;
         </div>
@@ -60,7 +70,7 @@
         </div>
       </div>
 
-      <h2 class="absolute bottom-8 left-10 text-3xl md:text-4xl font-bold text-red-500 drop-shadow-lg z-30">
+      <h2 class="absolute bottom-0 left-10 text-3xl font-semibold mb-4 text-red-500 z-30">
         Popular Movies
       </h2>
     </section>
@@ -70,192 +80,500 @@
       <section>
         <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-4">
 
+
+
+          <!-- Card 1 -->
           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
-            <a href="details.html">
-                <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
-                alt="Movie Image"
-                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110 cursor-pointer">
-            </a>
-            <div class="flex items-center justify-between px-1 mt-1">
-                <div class="text-center flex-1">
-                <p class="text-sm font-semibold">Iron Man 1</p>
-                <p class="text-xs text-yellow-400">★★★★★</p>
-                </div>
-                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
-                +
-                </button>
+            <div class="relative overflow-hidden rounded-lg">
+              <a href="details.html">
+                <img
+                  src="images\BannerIronMan.jpg"
+                  alt="Movie Image"
+                  class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+                />
+              </a>
+            </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+              
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">Iron Man</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+              
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
             </div>
           </div>
 
+
+
+          <!-- Card 2 -->
           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
-            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+            <div class="relative overflow-hidden rounded-lg">
+              <img
+                src="images\TheMazeRunner.jpg"
                 alt="Movie Image"
-                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
-            <div class="flex items-center justify-between px-1 mt-1">
-                <div class="text-center flex-1">
-                <p class="text-sm font-semibold">Iron Man 1</p>
-                <p class="text-xs text-yellow-400">★★★★★</p>
-                </div>
-                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
-                +
-                </button>
+                class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+              />
+            </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+              
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">The Maze Runner</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+              
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
             </div>
           </div>
 
-           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
-            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
-                alt="Movie Image"
-                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
-            <div class="flex items-center justify-between px-1 mt-1">
-                <div class="text-center flex-1">
-                <p class="text-sm font-semibold">Iron Man 1</p>
-                <p class="text-xs text-yellow-400">★★★★★</p>
-                </div>
-                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
-                +
-                </button>
-            </div>
-           </div>
 
-           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
-            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
-                alt="Movie Image"
-                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
-            <div class="flex items-center justify-between px-1 mt-1">
-                <div class="text-center flex-1">
-                <p class="text-sm font-semibold">Iron Man 1</p>
-                <p class="text-xs text-yellow-400">★★★★★</p>
-                </div>
-                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
-                +
-                </button>
-            </div>
-           </div>
 
-           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
-            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+          <!-- Card 3 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img
+                src="images\Guardians.jpg"
                 alt="Movie Image"
-                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
-            <div class="flex items-center justify-between px-1 mt-1">
-                <div class="text-center flex-1">
-                <p class="text-sm font-semibold">Iron Man 1</p>
-                <p class="text-xs text-yellow-400">★★★★★</p>
-                </div>
-                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
-                +
-                </button>
+                class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+              />
             </div>
-           </div>
 
-           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
-            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
-                alt="Movie Image"
-                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
-            <div class="flex items-center justify-between px-1 mt-1">
-                <div class="text-center flex-1">
-                <p class="text-sm font-semibold">Iron Man 1</p>
-                <p class="text-xs text-yellow-400">★★★★★</p>
-                </div>
-                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
-                +
-                </button>
+            <div class="flex items-start justify-between px-2 mt-2">
+              
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">Guardians of th...</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+              
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
             </div>
-           </div>
-        </div>
+          </div>
+
+
+
+          <!-- Card 4 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img
+                src="images\JohnWick.jpeg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+              />
+            </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+             
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">John Wick</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
+            </div>
+          </div>
+
+          
+          <!-- Card 5 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img
+                src="images\JurassicWorld.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+              />
+            </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">Jurassic World</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Card 6 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img
+                src="images\Wolfs.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+              />
+            </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">Wolfs</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
+            </div>
+          </div>
+
       </section>
 
 
-      <section class="mt-10">
-        <h2 class="text-2xl font-semibold mb-4 text-red-500">Movies You May Like</h2>
+
+
+      <section class="mt-10"> 
+        <h2 class="text-3xl font-semibold mb-4 text-red-500">Movies You May Like</h2>
         <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-                    <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
-            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+
+
+        
+          <!-- Card 1.1 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img
+                src="images\Guardians.jpg"
                 alt="Movie Image"
-                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
-            <div class="flex items-center justify-between px-1 mt-1">
-                <div class="text-center flex-1">
-                <p class="text-sm font-semibold">Iron Man 1</p>
-                <p class="text-xs text-yellow-400">★★★★★</p>
-                </div>
-                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
-                +
-                </button>
+                class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+              />
+            </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">Guardians of th...</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+              
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
             </div>
           </div>
 
-           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
-            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
-                alt="Movie Image"
-                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
-            <div class="flex items-center justify-between px-1 mt-1">
-                <div class="text-center flex-1">
-                <p class="text-sm font-semibold">Iron Man 1</p>
-                <p class="text-xs text-yellow-400">★★★★★</p>
-                </div>
-                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
-                +
-                </button>
-            </div>
-           </div>
 
-           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
-            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
-                alt="Movie Image"
-                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
-            <div class="flex items-center justify-between px-1 mt-1">
-                <div class="text-center flex-1">
-                <p class="text-sm font-semibold">Iron Man 1</p>
-                <p class="text-xs text-yellow-400">★★★★★</p>
-                </div>
-                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
-                +
-                </button>
-            </div>
-           </div>
 
-           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
-            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+          <!-- Card 2.1 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img
+                src="images\JohnWick.jpeg"
                 alt="Movie Image"
-                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
-            <div class="flex items-center justify-between px-1 mt-1">
-                <div class="text-center flex-1">
-                <p class="text-sm font-semibold">Iron Man 1</p>
-                <p class="text-xs text-yellow-400">★★★★★</p>
-                </div>
-                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
-                +
-                </button>
+                class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+              />
             </div>
-           </div>
 
-           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
-            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
-                alt="Movie Image"
-                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
-            <div class="flex items-center justify-between px-1 mt-1">
-                <div class="text-center flex-1">
-                <p class="text-sm font-semibold">Iron Man 1</p>
-                <p class="text-xs text-yellow-400">★★★★★</p>
-                </div>
-                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
-                +
-                </button>
+            <div class="flex items-start justify-between px-2 mt-2">
+
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">John Wick</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
             </div>
-           </div>
-           <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
-            <img src="C:\UIProject\Phase2trial\images\BannerIronMan.jpg"
+          </div>
+
+
+          <!-- Card 3.1 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img
+                src="images\Wolfs.jpg"
                 alt="Movie Image"
-                class="w-full h-64 md:h-72 object-cover rounded-lg transform transition-transform duration-300 hover:scale-110">
-            <div class="flex items-center justify-between px-1 mt-1">
-                <div class="text-center flex-1">
-                <p class="text-sm font-semibold">Iron Man 1</p>
-                <p class="text-xs text-yellow-400">★★★★★</p>
-                </div>
-                <button class="border border-red-500 text-red-500 w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition hover:scale-110">
-                +
-                </button>
+                class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+              />
             </div>
-           </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">Wolfs</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Card 4.1 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img
+                src="images\BannerIronMan.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+              />
+            </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">Iron Man</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Card 5.1 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img
+                src="images\TheMazeRunner.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+              />
+            </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">The Maze Runner</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Card 6.1 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img
+                src="images\JurassicWorld.jpg"
+                alt="Movie Image"
+                class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110"
+              />
+            </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">Jurassic World</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+              
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-3xl font-semibold mb-4 text-red-500">Newly Released Movies</h2>
+        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+
+
+          <!-- Card 1.2 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img src="images\JurassicWorld.jpg" alt="Movie Image" class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110" />
+            </div>
+            <div class="flex items-start justify-between px-2 mt-2">
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">Jurassic World</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2.2 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img src="images\BannerIronMan.jpg" alt="Movie Image" class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110" />
+            </div>
+            <div class="flex items-start justify-between px-2 mt-2">
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">Iron Man</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Card 3.2 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img src="images\Guardians.jpg" alt="Movie Image" class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110" />
+            </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">Guardians of th...</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Card 4.2 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img src="images\JohnWick.jpeg" alt="Movie Image" class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110" />
+            </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">John Wick</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Card 5.2 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img src="images\TheMazeRunner.jpg" alt="Movie Image" class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110" />
+            </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">The Maze Runner</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Card 6.2 -->
+          <div class="bg-black rounded-lg p-1 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)] transform transition-transform duration-300 hover:scale-105 overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img src="images\Wolfs.jpg" alt="Movie Image" class="w-full h-64 md:h-72 object-cover transition-transform duration-300 hover:scale-110" />
+            </div>
+
+            <div class="flex items-start justify-between px-2 mt-2">
+              <div class="flex flex-col">
+                <p class="text-sm font-semibold text-white">Wolfs</p>
+                <p class="text-xs text-yellow-400 flex items-center gap-1">
+                  4.1 <span class="text-yellow-400">★</span>
+                </p>
+              </div>
+
+              <div class="flex items-center space-x-2 mt-2">
+                <img src="images\heart.png" alt="Heart" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+                <img src="images\eye.png" alt="Eye" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-200" />
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
     </main>
