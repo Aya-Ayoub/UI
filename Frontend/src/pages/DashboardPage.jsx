@@ -42,7 +42,7 @@ export default function DashboardPage() {
           Dashboard
         </h1>
 
-        {/* Recently Added Movies */}
+
         <section>
           <h2 className="text-2xl font-semibold mb-4 text-red-500">
             Recently added to Watchlist
@@ -60,13 +60,14 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        {/* Charts */}
+
+
         <section>
           <h2 className="text-2xl font-semibold mb-4 text-red-500">Charts</h2>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {/* Watched vs Unwatched */}
-            <div className="bg-black border border-red-600 rounded-lg p-6 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)]">
+
+            <div className="bg-gradient-to-br from-zinc-950 via-black to-zinc-950 border-2 border-red-600 rounded-2xl shadow-[0_0_50px_-10px_rgba(220,38,38,0.8)] p-6 backdrop-blur-sm">
               <h3 className="text-lg text-red-500 mb-3 font-semibold">
                 Watched vs Unwatched
               </h3>
@@ -76,7 +77,11 @@ export default function DashboardPage() {
                   <BarChart data={watchData}>
                     <XAxis dataKey="name" stroke="#f87171" />
                     <YAxis hide />
-                    <Tooltip content={<MinimalTooltip />} wrapperStyle={{ outline: "none", background: "none" }} />
+                    <Tooltip
+                      content={<MinimalTooltip />}
+                      cursor={false}
+                      contentStyle={{ background: "transparent", border: "none", boxShadow: "none", padding: 0 }}
+                    />
                     <Bar dataKey="value" fill="#dc2626" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
@@ -87,8 +92,9 @@ export default function DashboardPage() {
               </p>
             </div>
 
-            {/* Movies per Genre */}
-            <div className="bg-black border border-red-600 rounded-lg p-6 shadow-[0_12px_30px_-10px_rgba(255,0,0,0.7)]">
+
+
+            <div className="bg-gradient-to-br from-zinc-950 via-black to-zinc-950 border-2 border-red-600 rounded-2xl shadow-[0_0_50px_-10px_rgba(220,38,38,0.8)] p-6 backdrop-blur-sm">
               <h3 className="text-lg text-red-500 mb-3 font-semibold">
                 Movies per Genre
               </h3>
@@ -98,7 +104,11 @@ export default function DashboardPage() {
                   <BarChart data={genreData}>
                     <XAxis dataKey="genre" stroke="#f87171" />
                     <YAxis hide />
-                    <Tooltip content={<MinimalTooltip />} wrapperStyle={{ outline: "none", background: "none" }} />
+                    <Tooltip
+                      content={<MinimalTooltip />}
+                      cursor={false}
+                      contentStyle={{ background: "transparent", border: "none", boxShadow: "none", padding: 0 }}
+                    />
                     <Bar dataKey="count" fill="#ef4444" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>

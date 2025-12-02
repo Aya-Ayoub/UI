@@ -5,7 +5,8 @@ import CastMember from "../components/CastMember";
 export default function DetailsPage() {
   return (
     <div className="bg-black text-white">
-      {/* HERO SECTION */}
+
+
       <section className="relative flex flex-col justify-center bg-black text-white min-h-[75vh] md:min-h-[80vh] pt-32 md:pt-40">
         <div className="absolute inset-0">
           <img
@@ -16,7 +17,7 @@ export default function DetailsPage() {
           <div className="absolute inset-0 bg-black opacity-30"></div>
         </div>
 
-        {/* MAIN MOVIE INFO */}
+
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-center px-6 md:px-20 py-12 gap-10">
           <img
             src="/images/BannerIronMan.jpg"
@@ -60,7 +61,7 @@ export default function DetailsPage() {
         </div>
       </section>
 
-      {/* TRAILER */}
+
       <section className="mt-16 px-6 md:px-20">
         <h2 className="text-3xl font-semibold text-red-500 mb-4">Official Trailer</h2>
 
@@ -75,7 +76,7 @@ export default function DetailsPage() {
         </div>
       </section>
 
-      {/* CAST & CREW */}
+
       <section className="mt-16 px-6 md:px-20">
         <h2 className="text-3xl font-semibold text-red-500 mb-6">Cast & Crew</h2>
 

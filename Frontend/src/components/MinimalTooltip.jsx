@@ -3,9 +3,9 @@ import React from "react";
 export default function MinimalTooltip({ active, payload }) {
   if (active && payload && payload.length) {
     return (
-      <p className="text-white text-sm font-semibold drop-shadow-lg">
+      <div className="text-white-500 font-bold text-sm">
         {payload[0].value}%
-      </p>
+      </div>
     );
   }
   return null;

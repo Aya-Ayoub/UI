@@ -1,42 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 
 export default function FormPage() {
-  const [formData, setFormData] = useState({
-    title: "",
-    genre: "",
-    year: "",
-    rating: "",
-    description: ""
-  });
-
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [id]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Movie data:", formData);
-    // Add your submit logic here (e.g., API call)
-    alert("Movie saved successfully!");
-    
-    // Reset form
-    setFormData({
-      title: "",
-      genre: "",
-      year: "",
-      rating: "",
-      description: ""
-    });
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="bg-black text-white min-h-screen flex flex-col">
-      
       <div className="h-20 md:h-24"></div>
 
       <main className="flex flex-col items-center justify-start flex-grow px-4 py-8 relative z-0">
@@ -50,14 +20,12 @@ export default function FormPage() {
             Add / Edit Movie
           </h1>
 
-          <form className="space-y-5" onSubmit={handleSubmit}>
+          <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); navigate("/home"); }}>
             <div>
               <label htmlFor="title" className="block text-base mb-2 text-red-400 font-semibold">Movie Title</label>
               <input 
                 type="text" 
                 id="title" 
-                value={formData.title}
-                onChange={handleChange}
                 placeholder="Enter movie title"
                 className="w-full p-3 rounded-lg bg-black text-white placeholder-gray-500 border-2 border-zinc-500 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-600 focus:ring-opacity-50 transition-all duration-300" 
                 required 
@@ -69,8 +37,6 @@ export default function FormPage() {
               <div className="relative">
                 <select 
                   id="genre" 
-                  value={formData.genre}
-                  onChange={handleChange}
                   title="Select movie genre"
                   className="w-full p-3 rounded-lg bg-black text-white border-2 border-zinc-500 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-600 focus:ring-opacity-50 transition-all duration-300 appearance-none cursor-pointer pr-10"
                   required
@@ -96,8 +62,6 @@ export default function FormPage() {
                 <input 
                   type="number" 
                   id="year" 
-                  value={formData.year}
-                  onChange={handleChange}
                   placeholder="2024" 
                   min="1900" 
                   max="2100"
@@ -112,8 +76,6 @@ export default function FormPage() {
                   type="number" 
                   step="0.1" 
                   id="rating" 
-                  value={formData.rating}
-                  onChange={handleChange}
                   placeholder="8.5" 
                   min="0" 
                   max="10"
@@ -128,8 +90,6 @@ export default function FormPage() {
               <textarea 
                 id="description" 
                 rows="4" 
-                value={formData.description}
-                onChange={handleChange}
                 placeholder="Write a short description..."
                 className="w-full p-3 rounded-lg bg-black text-white placeholder-gray-500 border-2 border-zinc-500 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-600 focus:ring-opacity-50 resize-none transition-all duration-300" 
                 required

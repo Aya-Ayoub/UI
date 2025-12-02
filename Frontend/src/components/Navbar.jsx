@@ -14,7 +14,7 @@ export default function Navbar() {
 
       {/* Desktop Navigation */}
       <nav className="space-x-8 text-lg hidden md:flex mr-12 items-center">
-        <Link to="/" className="hover:text-red-500 drop-shadow-lg">
+        <Link to="/home" className="hover:text-red-500 drop-shadow-lg">
           Home
         </Link>
         <Link to="/list" className="hover:text-red-500 drop-shadow-lg">
@@ -72,7 +72,7 @@ export default function Navbar() {
           <div className="md:hidden fixed top-20 right-4 bg-black border-2 border-red-600 rounded-lg shadow-[0_0_30px_rgba(255,0,0,0.6)] z-[99999] animate-fadeIn">
             <nav className="flex flex-col py-4 px-6 space-y-3 text-base">
               <Link
-                to="/"
+                to="/home"
                 className="hover:text-red-500 drop-shadow-lg transition-colors"
                 onClick={() => setIsOpen(false)}
               >
