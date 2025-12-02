@@ -1,14 +1,18 @@
-# CineHaven
+# React + Vite
 
-## Team Members
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- Aya Ayoub
-- Nada Waleed
+Currently, two official plugins are available:
 
-## Description
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-CineHaven is a web application that allows users to watch popular movies and view their detailed descriptions. It also allows users to manage and organize their own watchlists while tracking their watching habits through different chart visualizations.
+## React Compiler
 
-## Project Documents
+The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
 
-- [UI/UX Design](./Docs/CineHaven%20Figma.pdf)
+Note: This will impact Vite dev & build performances.
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
