@@ -72,19 +72,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="flex flex-col md:flex-row justify-center items-center gap-6 mt-10">
-          <button
-            className="bg-gradient-to-r from-red-600 to-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(220,38,38,0.7)]"
-          >
-            Watch
-          </button>
-
-          <button
-            className="bg-gradient-to-r from-red-600 to-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(220,38,38,0.7)]"
-          >
-            Add to Watchlist
-          </button>
-        </section>
       </main>
 
       <Footer />

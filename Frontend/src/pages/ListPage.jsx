@@ -1,111 +1,90 @@
-import React, { useState } from "react";
-import Footer from "../components/Footer";
-import MovieCard from "../components/MovieCard";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import HeroSection from "../components/HeroSection";
+import MovieCard from "../components/MovieCard";
+import Footer from "../components/Footer";
 
-const moviesData = [
-  { id: 1, title: "Iron Man", image: "/images/BannerIronMan.jpg", rating: 5, year: 2008, genre: "Action" },
-  { id: 2, title: "Guardians", image: "/images/Guardians.jpg", rating: 4, year: 2014, genre: "Action" },
-  { id: 3, title: "John Wick", image: "/images/JohnWick.jpeg", rating: 5, year: 2014, genre: "Action" },
-  { id: 4, title: "Jurassic World", image: "/images/JurassicWorld.jpg", rating: 4, year: 2015, genre: "Sci-Fi" },
-  { id: 5, title: "The Maze Runner", image: "/images/TheMazeRunner.jpg", rating: 5, year: 2014, genre: "Action" },
-  { id: 6, title: "Wolfs", image: "/images/Wolfs.jpg", rating: 4, year: 2020, genre: "Horror" },
+const movies = [
+  { image: "/images/BannerIronMan.jpg", title: "Iron Man", rating: 4.1 },
+  { image: "/images/TheMazeRunner.jpg", title: "The Maze Runner", rating: 4.1 },
+  { image: "/images/Guardians.jpg", title: "Guardians of th...", rating: 4.1 },
+  { image: "/images/JohnWick.jpeg", title: "John Wick", rating: 4.1 },
+  { image: "/images/JurassicWorld.jpg", title: "Jurassic World", rating: 4.1 },
+  { image: "/images/Wolfs.jpg", title: "Wolfs", rating: 4.1 },
 ];
 
-export default function ListPage() {
+export default function HomePage() {
   const navigate = useNavigate();
 
-  const [search, setSearch] = useState("");
-  const [year, setYear] = useState("");
-  const [rating, setRating] = useState("");
-  const [genre, setGenre] = useState("All");
-
-  const genres = ["All", "Action", "Comedy", "Drama", "Horror", "Sci-Fi"];
-
-  const filteredMovies = moviesData.filter((movie) => {
-    const matchesTitle = movie.title.toLowerCase().includes(search.toLowerCase());
-    const matchesYear = year ? movie.year.toString() === year : true;
-    const matchesRating = rating ? movie.rating >= parseInt(rating) : true;
-    const matchesGenre = genre === "All" ? true : movie.genre === genre;
-    return matchesTitle && matchesYear && matchesRating && matchesGenre;
-  });
+  const handleCardClick = (index) => {
+    if (index === 0) {
+      navigate("/details");
+    }
+  };
 
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-black text-white">
+      <HeroSection />
 
-      {/* Filters */}
-      <section className="pt-32 text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-red-500 drop-shadow-lg mb-6">
-          All Movies
-        </h1>
-
-        <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-8">
-          {/* Search Input */}
-          <input
-            type="text"
-            placeholder="Search by Movie Name"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-64 p-2.5 rounded-lg bg-black text-white placeholder-gray-500 border-2 border-red-600 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-600 focus:ring-opacity-50 transition-all duration-300"
-          />
-
-          {/* Release Year Input */}
-          <input
-            type="text"
-            placeholder="Release Year"
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-            className="w-40 p-2.5 rounded-lg bg-black text-white placeholder-gray-500 border-2 border-red-600 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-600 focus:ring-opacity-50 transition-all duration-300"
-          />
-
-          {/* Rating Select */}
-          <select
-            value={rating}
-            onChange={(e) => setRating(e.target.value)}
-            className="w-40 p-2.5 rounded-lg bg-black text-white border-2 border-red-600 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-600 focus:ring-opacity-50 transition-all duration-300"
-          >
-            <option value="">All Ratings</option>
-            <option value="1">1+</option>
-            <option value="2">2+</option>
-            <option value="3">3+</option>
-            <option value="4">4+</option>
-            <option value="5">5+</option>
-          </select>
-        </div>
-
-        {/* Genre Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {genres.map((g) => (
-            <button
-              key={g}
-              onClick={() => setGenre(g)}
-              className={`border-2 border-red-600 text-white px-4 py-2 rounded-lg transition ${
-                genre === g ? "bg-red-600 border-red-600" : "hover:bg-red-600 hover:text-white"
-              }`}
-            >
-              {g}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* Movie Cards */}
-      <main className="p-4">
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-4">
-          {filteredMovies.length ? (
-            filteredMovies.map((movie) => (
-              <MovieCard
-                key={movie.id}
-                image={movie.image}
-                title={movie.title}
+      <main className="p-4 space-y-10 relative z-10">
+        <section>
+          <h2 className="text-3xl font-semibold mb-4 text-red-500">Popular Movies</h2>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-4">
+            {movies.map((movie, idx) => (
+              <MovieCard 
+                key={idx} 
+                image={movie.image} 
+                title={movie.title} 
                 rating={movie.rating}
-                onClick={() => navigate("/details", { state: movie })}
+                onClick={() => handleCardClick(idx)}
               />
-            ))
-          ) : (
-            <p className="text-red-500 col-span-full text-center">No movies found.</p>
-          )}
-        </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-semibold mb-4 text-red-500">Movies You May Like</h2>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-4">
+            {movies.map((movie, idx) => (
+              <MovieCard 
+                key={idx + 100} 
+                image={movie.image} 
+                title={movie.title} 
+                rating={movie.rating}
+                onClick={() => handleCardClick(idx)}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-semibold mb-4 text-red-500">Newly Released Movies</h2>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-4">
+            {movies.map((movie, idx) => (
+              <MovieCard 
+                key={idx + 200} 
+                image={movie.image} 
+                title={movie.title} 
+                rating={movie.rating}
+                onClick={() => handleCardClick(idx)}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section className="flex flex-col md:flex-row justify-center items-center gap-6 mt-10">
+          <button
+            className="bg-gradient-to-r from-red-600 to-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(220,38,38,0.7)]"
+          >
+            Watch
+          </button>
+
+          <button
+            className="bg-gradient-to-r from-red-600 to-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(220,38,38,0.7)]"
+          >
+            Add to Watchlist
+          </button>
+        </section>
       </main>
 
       <Footer />
