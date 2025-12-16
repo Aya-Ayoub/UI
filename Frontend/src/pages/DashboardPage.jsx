@@ -1,5 +1,7 @@
-import React from "react";
-import MovieCard from "../components/MovieCard";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useProfile } from "../context/ProfileContext";
+import MovieRow from "../components/MovieRow";
 import Footer from "../components/Footer";
 import {
   BarChart,
@@ -12,112 +14,199 @@ import {
 import MinimalTooltip from "../components/MinimalTooltip";
 
 export default function DashboardPage() {
-  const movies = [
-    { image: "/images/BannerIronMan.jpg", title: "Iron Man", rating: 4.1 },
-    { image: "/images/TheMazeRunner.jpg", title: "The Maze Runner", rating: 4.1 },
-    { image: "/images/Guardians.jpg", title: "Guardians of th...", rating: 4.1 },
-    { image: "/images/JohnWick.jpeg", title: "John Wick", rating: 4.1 },
-    { image: "/images/JurassicWorld.jpg", title: "Jurassic World", rating: 4.1 },
-    { image: "/images/Wolfs.jpg", title: "Wolfs", rating: 4.1 },
-  ];
+  const { user, setUser } = useProfile();
+  const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    fetch("http://localhost:5000/movies")
+      .then((res) => res.json())
+      .then((data) => setMovies(data))
+      .catch((err) => console.log("Movie fetch error:", err));
+  }, []);
+
+  if (!user) return <p className="text-white">Loading...</p>;
+
+
+  const moviesWithFlags = movies.map((m) => ({
+    ...m,
+    isWatchlisted: user.watchlist?.includes(m.id),
+    isWatched: user.watched?.includes(m.id),
+  }));
+
+
+  const recentWatchlist = moviesWithFlags
+    .filter((m) => m.isWatchlisted)
+    .slice(-8);
+
+
+  const totalInWatchlist = moviesWithFlags.filter((m) => m.isWatchlisted).length;
+
+  const watchedCount = moviesWithFlags.filter(
+    (m) => m.isWatchlisted && m.isWatched
+  ).length;
+
+  const unwatchedCount = totalInWatchlist - watchedCount;
+
+  const watchedPercent =
+    totalInWatchlist === 0 ? 0 : Math.round((watchedCount / totalInWatchlist) * 100);
+
+  const unwatchedPercent =
+    totalInWatchlist === 0 ? 0 : Math.round((unwatchedCount / totalInWatchlist) * 100);
 
   const watchData = [
-    { name: "Watched", value: 80 },
-    { name: "Unwatched", value: 20 },
+    { name: `Watched (${watchedPercent}%)`, value: watchedPercent, fill: "#b91c1c" },
+    { name: `Unwatched (${unwatchedPercent}%)`, value: unwatchedPercent, fill: "#dc2626" },
   ];
 
-  const genreData = [
-    { genre: "Action", count: 50 },
-    { genre: "Drama", count: 80 },
-    { genre: "Comedy", count: 60 },
-    { genre: "Sci-Fi", count: 30 },
-  ];
+
+  const genreCount = {};
+
+  moviesWithFlags
+    .filter((m) => m.isWatchlisted)
+    .forEach((m) => {
+      const genres = m.genre ? m.genre.split(",").map((g) => g.trim()) : ["Unknown"];
+      genres.forEach((g) => {
+        genreCount[g] = (genreCount[g] || 0) + 1;
+      });
+    });
+
+  const redShades = ["#991b1b", "#b91c1c", "#dc2626", "#ef4444", "#f87171"];
+
+  const genreData = Object.keys(genreCount).map((g, i) => {
+    const percent =
+      totalInWatchlist === 0 ? 0 : Math.round((genreCount[g] / totalInWatchlist) * 100);
+    return {
+      genre: g,
+      count: percent,
+      fill: redShades[i % redShades.length],
+    };
+  });
+
+
+  const handleCardClick = (id) => navigate(`/details/${id}`);
+
+
+  const toggleWatchlist = async (movie) => {
+    const already = user.watchlist.includes(movie.id);
+
+    const updatedUser = {
+      ...user,
+      watchlist: already
+        ? user.watchlist.filter((x) => x !== movie.id)
+        : [...user.watchlist, movie.id],
+    };
+
+    await fetch(`http://localhost:5000/users/${user.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ watchlist: updatedUser.watchlist }),
+    });
+
+    setUser(updatedUser);
+  };
+
+
+  const toggleWatched = async (movie) => {
+    const already = user.watched.includes(movie.id);
+
+    const updatedUser = {
+      ...user,
+      watched: already
+        ? user.watched.filter((x) => x !== movie.id)
+        : [...user.watched, movie.id],
+    };
+
+    await fetch(`http://localhost:5000/users/${user.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ watched: updatedUser.watched }),
+    });
+
+    setUser(updatedUser);
+  };
 
   return (
     <div className="bg-black text-white min-h-screen">
       <div className="h-20 md:h-24"></div>
-      
-      <div className="pt-4 px-6 space-y-10">
-        <h1 className="text-5xl font-bold text-red-600 drop-shadow-md mb-2 text-center">
+
+      <div className="pt-4 px-4 sm:px-6 space-y-10">
+
+        <h1 className="text-4xl sm:text-5xl font-bold text-red-600 text-center mb-2">
           Dashboard
         </h1>
 
 
+        <MovieRow
+          title="Recently added to Watchlist"
+          movies={recentWatchlist}
+          onCardClick={handleCardClick}
+          onToggleWatchlist={toggleWatchlist}
+          onToggleWatched={toggleWatched}
+        />
+
         <section>
-          <h2 className="text-2xl font-semibold mb-4 text-red-500">
-            Recently added to Watchlist
+          <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-red-500">
+            Charts
           </h2>
 
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-            {movies.map((movie, index) => (
-              <MovieCard
-                key={index}
-                image={movie.image}
-                title={movie.title}
-                rating={movie.rating}
-              />
-            ))}
-          </div>
-        </section>
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
 
+            <div className="bg-gradient-to-br from-zinc-950 via-black to-zinc-950 
+              border-2 border-red-600 rounded-2xl p-4 sm:p-6 shadow-[0_0_50px_-10px_rgba(220,38,38,0.8)]">
 
-
-        <section>
-          <h2 className="text-2xl font-semibold mb-4 text-red-500">Charts</h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
-
-            <div className="bg-gradient-to-br from-zinc-950 via-black to-zinc-950 border-2 border-red-600 rounded-2xl shadow-[0_0_50px_-10px_rgba(220,38,38,0.8)] p-6 backdrop-blur-sm">
-              <h3 className="text-lg text-red-500 mb-3 font-semibold">
+              <h3 className="text-base sm:text-lg text-red-500 mb-3 font-semibold">
                 Watched vs Unwatched
               </h3>
 
               <div className="h-56 flex justify-center items-center">
                 <ResponsiveContainer width="80%" height={200}>
                   <BarChart data={watchData}>
-                    <XAxis dataKey="name" stroke="#f87171" />
-                    <YAxis hide />
-                    <Tooltip
-                      content={<MinimalTooltip />}
-                      cursor={false}
-                      contentStyle={{ background: "transparent", border: "none", boxShadow: "none", padding: 0 }}
+                    <XAxis
+                      dataKey="name"
+                      stroke="#f87171"
+                      tick={{ fontSize: 14, fill: "#fca5a5" }} 
+                      tickLine={false}
                     />
-                    <Bar dataKey="value" fill="#dc2626" radius={[8, 8, 0, 0]} />
+                    <YAxis hide />
+                    <Tooltip content={<MinimalTooltip />} cursor={false} />
+                    <Bar dataKey="value" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-
-              <p className="text-red-400 text-sm text-center mt-2">
-                Watched (80%) vs Unwatched (20%)
-              </p>
             </div>
 
 
 
-            <div className="bg-gradient-to-br from-zinc-950 via-black to-zinc-950 border-2 border-red-600 rounded-2xl shadow-[0_0_50px_-10px_rgba(220,38,38,0.8)] p-6 backdrop-blur-sm">
-              <h3 className="text-lg text-red-500 mb-3 font-semibold">
-                Movies per Genre
+            <div className="bg-gradient-to-br from-zinc-950 via-black to-zinc-950 
+              border-2 border-red-600 rounded-2xl p-4 sm:p-6 shadow-[0_0_50px_-10px_rgba(220,38,38,0.8)]">
+
+              <h3 className="text-base sm:text-lg text-red-500 mb-3 font-semibold">
+                Genres in Your Watchlist
               </h3>
 
               <div className="h-56 flex justify-center items-center">
                 <ResponsiveContainer width="80%" height={200}>
                   <BarChart data={genreData}>
-                    <XAxis dataKey="genre" stroke="#f87171" />
-                    <YAxis hide />
-                    <Tooltip
-                      content={<MinimalTooltip />}
-                      cursor={false}
-                      contentStyle={{ background: "transparent", border: "none", boxShadow: "none", padding: 0 }}
+                    <XAxis
+                      dataKey="genre"
+                      stroke="#f87171"
+                      tick={{
+                        fontSize: 9,
+                        fill: "#fca5a5",
+                        fontWeight: 500,
+                      }}
+                      tickLine={false}
                     />
-                    <Bar dataKey="count" fill="#ef4444" radius={[8, 8, 0, 0]} />
+                    <YAxis hide />
+                    <Tooltip content={<MinimalTooltip />} cursor={false} />
+                    <Bar dataKey="count" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-
-              <p className="text-red-400 text-sm text-center mt-2">
-                Action | Drama | Comedy | Sci-Fi
-              </p>
             </div>
+
           </div>
         </section>
       </div>

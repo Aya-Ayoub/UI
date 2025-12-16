@@ -3,17 +3,22 @@ import MovieCard from "./MovieCard";
 
 export default function MovieSection({ title, movies }) {
   return (
-    <section className="mt-16 px-6">
-      <h3 className="text-3xl font-semibold text-red-500 text-center mb-8">{title}</h3>
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-4">
-        {movies.map((movie, idx) => (
-          <MovieCard 
-            key={idx}
-            image={movie.image}
-            title={movie.title}
-            rating={movie.rating}
-            onClick={() => console.log("Clicked", movie.title)}
-          />
+    <section className="px-6 mt-12">
+      <h2 className="text-2xl font-semibold mb-4 text-red-500">{title}</h2>
+
+      <div className="flex gap-4 overflow-x-auto scrollbar-none py-2">
+        {movies?.map((movie, index) => (
+          <div
+            key={movie.id || index}
+            className="shrink-0 min-w-[150px] md:min-w-[200px]"
+          >
+            <MovieCard
+              image={movie.smallposter || movie.image}
+              title={movie.title}
+              rating={movie.rating}
+              onClick={() => console.log("Movie clicked")}
+            />
+          </div>
         ))}
       </div>
     </section>
