@@ -1,90 +1,142 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useProfile } from "../context/ProfileContext";
+
 import HeroSection from "../components/HeroSection";
-import MovieCard from "../components/MovieCard";
+import MovieRow from "../components/MovieRow";
 import Footer from "../components/Footer";
 
-const movies = [
-  { image: "/images/BannerIronMan.jpg", title: "Iron Man", rating: 4.1 },
-  { image: "/images/TheMazeRunner.jpg", title: "The Maze Runner", rating: 4.1 },
-  { image: "/images/Guardians.jpg", title: "Guardians of th...", rating: 4.1 },
-  { image: "/images/JohnWick.jpeg", title: "John Wick", rating: 4.1 },
-  { image: "/images/JurassicWorld.jpg", title: "Jurassic World", rating: 4.1 },
-  { image: "/images/Wolfs.jpg", title: "Wolfs", rating: 4.1 },
-];
-
 export default function HomePage() {
+  const [movies, setMovies] = useState([]);
+  const [randomizedMovies, setRandomizedMovies] = useState([]);
+
+  const { user, setUser } = useProfile();
   const navigate = useNavigate();
 
-  const handleCardClick = (index) => {
-    if (index === 0) {
-      navigate("/details");
-    }
+  useEffect(() => {
+    fetch("http://localhost:5000/movies")
+      .then(res => res.json())
+      .then(data => {
+        setMovies(data);
+
+
+        const shuffled = [...data].sort(() => Math.random() - 0.5);
+        setRandomizedMovies(shuffled);
+      })
+      .catch(err => console.error("Error fetching movies:", err));
+  }, []);
+
+
+  const lastFourMovies = movies.slice(-4);
+
+
+  const handleCardClick = (id) => {
+    navigate(`/details/${id}`);
   };
+
+
+  const toggleWatchlist = async (movie) => {
+    if (!user) return alert("Log in to use your watchlist!");
+
+    const already = user.watchlist?.includes(movie.id);
+
+    const updatedUser = {
+      ...user,
+      watchlist: already
+        ? user.watchlist.filter((mid) => mid !== movie.id)
+        : [...user.watchlist, movie.id],
+    };
+
+    await fetch(`http://localhost:5000/users/${user.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ watchlist: updatedUser.watchlist }),
+    });
+
+    setUser(updatedUser);
+  };
+
+
+  const toggleWatched = async (movie) => {
+    if (!user) return alert("Log in to mark watched!");
+
+    const already = user.watched?.includes(movie.id);
+
+    const updatedUser = {
+      ...user,
+      watched: already
+        ? user.watched.filter((mid) => mid !== movie.id)
+        : [...user.watched, movie.id],
+    };
+
+    await fetch(`http://localhost:5000/users/${user.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ watched: updatedUser.watched }),
+    });
+
+    setUser(updatedUser);
+  };
+
+
+  const moviesWithUserFlags = randomizedMovies.map((m) => ({
+    ...m,
+    isWatchlisted: user?.watchlist?.includes(m.id) || false,
+    isWatched: user?.watched?.includes(m.id) || false,
+  }));
+
+
+
+
+  const popularMovies = moviesWithUserFlags.filter((m) => m.rating >= 8);
+
+
+  const watchedGenres = new Set(
+    movies
+      .filter(m => user?.watched?.includes(m.id))
+      .map(m => m.genre)
+  );
+
+  const recommendedMovies = moviesWithUserFlags.filter(
+    (m) => watchedGenres.has(m.genre)
+  );
+
+
+  const newlyReleased = moviesWithUserFlags.filter((m) => m.year >= 2015);
 
   return (
     <div className="bg-black text-white">
-      <HeroSection />
 
-      <main className="p-4 space-y-10 relative z-10">
-        <section>
-          <h2 className="text-3xl font-semibold mb-4 text-red-500">Popular Movies</h2>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-4">
-            {movies.map((movie, idx) => (
-              <MovieCard 
-                key={idx} 
-                image={movie.image} 
-                title={movie.title} 
-                rating={movie.rating}
-                onClick={() => handleCardClick(idx)}
-              />
-            ))}
-          </div>
-        </section>
+      <HeroSection trending={lastFourMovies} />
 
-        <section>
-          <h2 className="text-3xl font-semibold mb-4 text-red-500">Movies You May Like</h2>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-4">
-            {movies.map((movie, idx) => (
-              <MovieCard 
-                key={idx + 100} 
-                image={movie.image} 
-                title={movie.title} 
-                rating={movie.rating}
-                onClick={() => handleCardClick(idx)}
-              />
-            ))}
-          </div>
-        </section>
+      <main className="p-4 space-y-12">
 
-        <section>
-          <h2 className="text-3xl font-semibold mb-4 text-red-500">Newly Released Movies</h2>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-4">
-            {movies.map((movie, idx) => (
-              <MovieCard 
-                key={idx + 200} 
-                image={movie.image} 
-                title={movie.title} 
-                rating={movie.rating}
-                onClick={() => handleCardClick(idx)}
-              />
-            ))}
-          </div>
-        </section>
+        <MovieRow
+          title="Popular Movies"
+          movies={popularMovies}
+          onCardClick={handleCardClick}
+          onToggleWatchlist={toggleWatchlist}
+          onToggleWatched={toggleWatched}
+        />
 
-        <section className="flex flex-col md:flex-row justify-center items-center gap-6 mt-10">
-          <button
-            className="bg-gradient-to-r from-red-600 to-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(220,38,38,0.7)]"
-          >
-            Watch
-          </button>
+        {user?.watchlist?.length > 0 && (
+          <MovieRow
+            title="Movies You May Like"
+            movies={recommendedMovies}
+            onCardClick={handleCardClick}
+            onToggleWatchlist={toggleWatchlist}
+            onToggleWatched={toggleWatched}
+          />
+        )}
 
-          <button
-            className="bg-gradient-to-r from-red-600 to-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(220,38,38,0.7)]"
-          >
-            Add to Watchlist
-          </button>
-        </section>
+        <MovieRow
+          title="Newly Released Movies"
+          movies={newlyReleased}
+          onCardClick={handleCardClick}
+          onToggleWatchlist={toggleWatchlist}
+          onToggleWatched={toggleWatched}
+        />
+
       </main>
 
       <Footer />
