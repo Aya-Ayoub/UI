@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useProfile } from "../context/ProfileContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileInfo({ user }) {
   const { setUser } = useProfile();
+  const navigate = useNavigate();
 
   const safeUser = user || {
     id: 0,
@@ -55,7 +57,7 @@ export default function ProfileInfo({ user }) {
     if (!user) return;
 
     try {
-      const res = await fetch(`http://localhost:3001/users/${user.id}`, {
+      const res = await fetch(`http://localhost:5000/users/${user.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...user, ...formData })
@@ -63,16 +65,27 @@ export default function ProfileInfo({ user }) {
 
       const updatedUser = await res.json();
       setUser(updatedUser);
-
-      setIsOpen(false); 
-
+      setIsOpen(false);
     } catch (err) {
       console.error("Update failed", err);
     }
   };
 
+  const handleLogout = () => {
+    setUser(null);       // clear user from context
+    navigate("/");  // go to login page
+  };
+
   return (
-    <div className="bg-black border-2 border-red-600 rounded-2xl shadow-[0_0_50px_-10px_rgba(220,38,38,0.8)] w-full max-w-md p-8 text-center">
+    <div className="relative bg-black border-2 border-red-600 rounded-2xl shadow-[0_0_50px_-10px_rgba(220,38,38,0.8)] w-full max-w-md p-8 text-center">
+      
+      {/* Logout button at top-right */}
+      <button
+        onClick={handleLogout}
+        className="absolute top-4 right-4 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+      >
+        Log Out
+      </button>
 
       <img
         src={formData.avatar}
@@ -88,7 +101,7 @@ export default function ProfileInfo({ user }) {
         <summary
           className="bg-red-600 cursor-pointer text-white font-semibold px-6 py-3 rounded-lg"
           onClick={(e) => {
-            e.preventDefault(); 
+            e.preventDefault();
             setIsOpen(!isOpen);
           }}
         >

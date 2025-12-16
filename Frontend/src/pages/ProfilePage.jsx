@@ -29,7 +29,7 @@ export default function ProfilePage() {
   const displayUser = user || fallbackUser;
 
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-black text-white min-h-screen relative">
       <div className="pt-32 px-6 flex flex-col items-center">
         <ProfileInfo user={displayUser} />
       </div>
