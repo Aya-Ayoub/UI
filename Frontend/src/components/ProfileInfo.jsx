@@ -53,7 +53,6 @@ export default function ProfileInfo({ user }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!user) return;
 
     try {
@@ -71,14 +70,18 @@ export default function ProfileInfo({ user }) {
     }
   };
 
+  // ✅ FIXED LOGOUT
   const handleLogout = () => {
-    setUser(null);       
-    navigate("/");  
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("userId");
+
+    setUser(null);
+    navigate("/");
   };
 
   return (
     <div className="relative bg-black border-2 border-red-600 rounded-2xl shadow-[0_0_50px_-10px_rgba(220,38,38,0.8)] w-full max-w-md p-8 text-center">
-      
 
       <button
         onClick={handleLogout}
@@ -109,48 +112,18 @@ export default function ProfileInfo({ user }) {
         </summary>
 
         <form className="flex flex-col gap-4 mt-4 p-4" onSubmit={handleSubmit}>
-
           <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-red-600 border-dashed rounded-lg cursor-pointer bg-black hover:bg-red-600/10 transition">
             <span className="text-gray-300 mb-2">Click to upload profile picture</span>
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleFileUpload}
-            />
+            <input type="file" accept="image/*" className="hidden" onChange={handleFileUpload} />
           </label>
 
-          <input
-            id="name"
-            type="text"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full p-3 rounded-lg bg-black text-white border-2 border-red-600"
-          />
+          <input id="name" type="text" value={formData.name} onChange={handleChange} className="w-full p-3 rounded-lg bg-black text-white border-2 border-red-600" />
+          <input id="email" type="email" value={formData.email} onChange={handleChange} className="w-full p-3 rounded-lg bg-black text-white border-2 border-red-600" />
+          <input id="password" type="password" value={formData.password} onChange={handleChange} className="w-full p-3 rounded-lg bg-black text-white border-2 border-red-600" />
 
-          <input
-            id="email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-3 rounded-lg bg-black text-white border-2 border-red-600"
-          />
-
-          <input
-            id="password"
-            type="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full p-3 rounded-lg bg-black text-white border-2 border-red-600"
-          />
-
-          <button
-            type="submit"
-            className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-3 rounded-lg"
-          >
+          <button type="submit" className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-3 rounded-lg">
             Save Changes
           </button>
-
         </form>
       </details>
     </div>

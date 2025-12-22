@@ -16,13 +16,13 @@ export default function SignupPage() {
     confirmPassword: ""
   });
 
-  const [errors, setErrors] = useState({});    
-  const [status, setStatus] = useState("");     
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState("");
 
   function handleChange(e) {
     setForm({ ...form, [e.target.id]: e.target.value });
-    setErrors({ ...errors, [e.target.id]: "" }); 
-    setStatus("");                                
+    setErrors({ ...errors, [e.target.id]: "" });
+    setStatus("");
   }
 
   async function handleSubmit(e) {
@@ -43,6 +43,7 @@ export default function SignupPage() {
       email: form.email,
       password: form.password,
       age: form.age,
+      role: "user", // ✅ added role
       avatar: "/images/default-avatar.jpg",
       joined: new Date().toLocaleDateString("en-US", {
         month: "long",
@@ -66,6 +67,11 @@ export default function SignupPage() {
 
       const createdUser = await res.json();
 
+      // ✅ simulate authentication
+      localStorage.setItem("token", "fake-jwt-token");
+      localStorage.setItem("role", createdUser.role);
+      localStorage.setItem("userId", createdUser.id);
+
       setUser(createdUser);
       navigate("/home");
     } catch (error) {
@@ -88,7 +94,11 @@ export default function SignupPage() {
           )}
 
           <div className="flex justify-center mb-6">
-            <img src="/images/logo.png" alt="CineHaven Logo" className="h-16 drop-shadow-[0_0_10px_rgba(220,38,38,0.5)]" />
+            <img
+              src="/images/logo.png"
+              alt="CineHaven Logo"
+              className="h-16 drop-shadow-[0_0_10px_rgba(220,38,38,0.5)]"
+            />
           </div>
 
           <h1 className="text-3xl font-extrabold text-center bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent mb-6">
@@ -96,10 +106,11 @@ export default function SignupPage() {
           </h1>
 
           <form className="space-y-5" onSubmit={handleSubmit}>
-
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
-                <label htmlFor="firstName" className="block text-base mb-2 text-red-400 font-semibold">First Name</label>
+                <label htmlFor="firstName" className="block text-base mb-2 text-red-400 font-semibold">
+                  First Name
+                </label>
                 <input
                   type="text"
                   id="firstName"
@@ -112,7 +123,9 @@ export default function SignupPage() {
               </div>
 
               <div className="flex-1">
-                <label htmlFor="lastName" className="block text-base mb-2 text-red-400 font-semibold">Last Name</label>
+                <label htmlFor="lastName" className="block text-base mb-2 text-red-400 font-semibold">
+                  Last Name
+                </label>
                 <input
                   type="text"
                   id="lastName"
@@ -126,7 +139,9 @@ export default function SignupPage() {
             </div>
 
             <div>
-              <label htmlFor="age" className="block text-base mb-2 text-red-400 font-semibold">Age</label>
+              <label htmlFor="age" className="block text-base mb-2 text-red-400 font-semibold">
+                Age
+              </label>
               <input
                 type="number"
                 id="age"
@@ -141,7 +156,9 @@ export default function SignupPage() {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-base mb-2 text-red-400 font-semibold">Email</label>
+              <label htmlFor="email" className="block text-base mb-2 text-red-400 font-semibold">
+                Email
+              </label>
               <input
                 type="email"
                 id="email"
@@ -154,7 +171,9 @@ export default function SignupPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-base mb-2 text-red-400 font-semibold">Password</label>
+              <label htmlFor="password" className="block text-base mb-2 text-red-400 font-semibold">
+                Password
+              </label>
               <input
                 type="password"
                 id="password"
@@ -167,7 +186,9 @@ export default function SignupPage() {
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-base mb-2 text-red-400 font-semibold">Confirm Password</label>
+              <label htmlFor="confirmPassword" className="block text-base mb-2 text-red-400 font-semibold">
+                Confirm Password
+              </label>
               <input
                 type="password"
                 id="confirmPassword"
@@ -178,7 +199,9 @@ export default function SignupPage() {
                 required
               />
               {errors.confirmPassword && (
-                <p className="text-red-500 text-sm mt-1">{errors.confirmPassword}</p>
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.confirmPassword}
+                </p>
               )}
             </div>
 
@@ -192,7 +215,9 @@ export default function SignupPage() {
 
           <p className="text-center text-gray-400 text-sm mt-6">
             Already have an account?{" "}
-            <a href="/" className="text-red-500 hover:underline">Log in</a>
+            <a href="/" className="text-red-500 hover:underline">
+              Log in
+            </a>
           </p>
         </div>
       </main>

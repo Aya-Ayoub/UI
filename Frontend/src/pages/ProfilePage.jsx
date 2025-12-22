@@ -10,6 +10,13 @@ export default function ProfilePage() {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
 
+  // ✅ PROTECT PAGE
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   useEffect(() => {
     fetch("http://localhost:5000/movies")
@@ -26,7 +33,6 @@ export default function ProfilePage() {
     isWatched: user.watched?.includes(m.id),
   }));
 
-
   const userWatchlist = moviesWithFlags.filter((m) =>
     user.watchlist?.includes(m.id)
   );
@@ -36,14 +42,10 @@ export default function ProfilePage() {
   );
 
   const userUnwatched = moviesWithFlags.filter(
-    (m) =>
-      user.watchlist?.includes(m.id) &&    
-      !user.watched?.includes(m.id)        
+    (m) => user.watchlist?.includes(m.id) && !user.watched?.includes(m.id)
   );
 
-
   const handleCardClick = (id) => navigate(`/details/${id}`);
-
 
   const toggleWatchlist = async (movie) => {
     const already = user.watchlist.includes(movie.id);
@@ -63,7 +65,6 @@ export default function ProfilePage() {
 
     setUser(updatedUser);
   };
-
 
   const toggleWatched = async (movie) => {
     const already = user.watched.includes(movie.id);
@@ -86,36 +87,13 @@ export default function ProfilePage() {
 
   return (
     <div className="bg-black text-white min-h-screen pt-32 px-6">
-      
-   
       <div className="flex justify-center mb-10">
         <ProfileInfo user={user} />
       </div>
 
-
-      <MovieRow
-        title="Your Watchlist"
-        movies={userWatchlist}
-        onCardClick={handleCardClick}
-        onToggleWatchlist={toggleWatchlist}
-        onToggleWatched={toggleWatched}
-      />
-
-      <MovieRow
-        title="Watched Movies"
-        movies={userWatched}
-        onCardClick={handleCardClick}
-        onToggleWatchlist={toggleWatchlist}
-        onToggleWatched={toggleWatched}
-      />
-
-      <MovieRow
-        title="Unwatched Movies"
-        movies={userUnwatched}
-        onCardClick={handleCardClick}
-        onToggleWatchlist={toggleWatchlist}
-        onToggleWatched={toggleWatched}
-      />
+      <MovieRow title="Your Watchlist" movies={userWatchlist} onCardClick={handleCardClick} onToggleWatchlist={toggleWatchlist} onToggleWatched={toggleWatched} />
+      <MovieRow title="Watched Movies" movies={userWatched} onCardClick={handleCardClick} onToggleWatchlist={toggleWatchlist} onToggleWatched={toggleWatched} />
+      <MovieRow title="Unwatched Movies" movies={userUnwatched} onCardClick={handleCardClick} onToggleWatchlist={toggleWatchlist} onToggleWatched={toggleWatched} />
 
       <Footer />
     </div>
