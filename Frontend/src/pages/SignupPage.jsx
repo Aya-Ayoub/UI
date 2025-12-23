@@ -67,7 +67,7 @@ export default function SignupPage() {
 
       const createdUser = await res.json();
 
-      // ✅ simulate authentication
+
       localStorage.setItem("token", "fake-jwt-token");
       localStorage.setItem("role", createdUser.role);
       localStorage.setItem("userId", createdUser.id);

@@ -10,7 +10,7 @@ export default function ProfilePage() {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
 
-  // ✅ PROTECT PAGE
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {

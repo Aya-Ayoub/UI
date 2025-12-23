@@ -27,7 +27,7 @@ export default function LoginPage() {
       return;
     }
 
-    // ✅ ADDED: simulate authentication
+
     localStorage.setItem("token", "fake-jwt-token");
     localStorage.setItem("role", found.role || "user");
     localStorage.setItem("userId", found.id);

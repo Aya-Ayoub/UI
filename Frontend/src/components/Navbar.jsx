@@ -26,7 +26,7 @@ export default function Navbar() {
 
   useEffect(() => {
     function handleClick(e) {
-      // 🔥 allow React Router <Link> navigation
+
       if (e.target.closest("a")) return;
 
       if (searchRef.current && !searchRef.current.contains(e.target)) {
@@ -61,7 +61,7 @@ export default function Navbar() {
         />
       </Link>
 
-      {/* ================= DESKTOP ================= */}
+
       <nav className="hidden md:flex items-center space-x-8 mr-12 text-lg">
 
         <div ref={searchRef} className="relative flex items-center">
@@ -136,7 +136,7 @@ export default function Navbar() {
         <Link to="/profile" className={activeClass("/profile")}>Profile</Link>
       </nav>
 
-      {/* ================= MOBILE ================= */}
+
       <button
         className="md:hidden text-white focus:outline-none z-[99999]"
         onClick={() => setIsOpen(!isOpen)}

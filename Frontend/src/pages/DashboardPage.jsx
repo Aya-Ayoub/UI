@@ -18,7 +18,7 @@ import MinimalTooltip from "../components/MinimalTooltip";
 export default function DashboardPage() {
   const { user, setUser } = useProfile();
   const [movies, setMovies] = useState([]);
-  const [mode, setMode] = useState("watchlist"); // watchlist | watched
+  const [mode, setMode] = useState("watchlist"); 
   const navigate = useNavigate();
 
   useEffect(() => {
