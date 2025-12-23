@@ -5,7 +5,6 @@ const MovieContext = createContext();
 export function MovieProvider({ children }) {
   const [movies, setMovies] = useState([]);
 
-  // Fetch movies from your database
   useEffect(() => {
     async function fetchMovies() {
       try {
@@ -19,7 +18,7 @@ export function MovieProvider({ children }) {
     fetchMovies();
   }, []);
 
-  // --- ADD MOVIE FUNCTION ---
+
   const addMovie = (newMovie) => {
     setMovies((prev) => [...prev, newMovie]);
   };

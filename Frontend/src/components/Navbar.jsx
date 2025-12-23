@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useMovies } from "../context/MovieContext";
+import { useProfile } from "../context/ProfileContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +10,10 @@ export default function Navbar() {
   const [query, setQuery] = useState("");
 
   const { movies } = useMovies();
+  const { user } = useProfile();
   const location = useLocation();
+
+  const isAdmin = user?.role === "admin";
 
   const searchRef = useRef(null);
   const mobileMenuRef = useRef(null);
@@ -20,16 +24,15 @@ export default function Navbar() {
       )
     : [];
 
-
   useEffect(() => {
     function handleClick(e) {
-    
+      // 🔥 allow React Router <Link> navigation
+      if (e.target.closest("a")) return;
 
       if (searchRef.current && !searchRef.current.contains(e.target)) {
         setSearchOpen(false);
         setQuery("");
       }
-
 
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target)) {
         setIsOpen(false);
@@ -58,9 +61,8 @@ export default function Navbar() {
         />
       </Link>
 
-
+      {/* ================= DESKTOP ================= */}
       <nav className="hidden md:flex items-center space-x-8 mr-12 text-lg">
-
 
         <div ref={searchRef} className="relative flex items-center">
           {!searchOpen && (
@@ -113,7 +115,9 @@ export default function Navbar() {
                   ))}
 
                   {filtered.length === 0 && (
-                    <div className="px-3 py-2 text-gray-300 text-sm">No results</div>
+                    <div className="px-3 py-2 text-gray-300 text-sm">
+                      No results
+                    </div>
                   )}
                 </div>
               )}
@@ -124,12 +128,15 @@ export default function Navbar() {
         <Link to="/home" className={activeClass("/home")}>Home</Link>
         <Link to="/list" className={activeClass("/list")}>Movies</Link>
         <Link to="/dashboard" className={activeClass("/dashboard")}>Dashboard</Link>
-        <Link to="/form" className={activeClass("/form")}>Add Movie</Link>
+
+        {isAdmin && (
+          <Link to="/form" className={activeClass("/form")}>Add Movie</Link>
+        )}
+
         <Link to="/profile" className={activeClass("/profile")}>Profile</Link>
       </nav>
 
-
-
+      {/* ================= MOBILE ================= */}
       <button
         className="md:hidden text-white focus:outline-none z-[99999]"
         onClick={() => setIsOpen(!isOpen)}
@@ -145,7 +152,6 @@ export default function Navbar() {
         </svg>
       </button>
 
-
       {isOpen && (
         <div
           ref={mobileMenuRef}
@@ -156,7 +162,6 @@ export default function Navbar() {
           "
         >
           <nav className="flex flex-col py-4 px-6 space-y-3 text-base">
-
 
             <div className="relative">
               {!mobileSearch && (
@@ -186,7 +191,7 @@ export default function Navbar() {
                     className="w-full bg-transparent text-white placeholder-gray-300 outline-none py-1 px-2 text-sm"
                   />
 
-                  {query && filtered.length > 0 && (
+                  {query && (
                     <div className="mt-2 max-h-40 overflow-y-auto rounded-lg">
                       {filtered.slice(0, 4).map((movie) => (
                         <Link
@@ -212,11 +217,15 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link to="/home" className={activeClass("/home")} onClick={() => setIsOpen(false)}>Home</Link>
-            <Link to="/list" className={activeClass("/list")} onClick={() => setIsOpen(false)}>Movies</Link>
-            <Link to="/dashboard" className={activeClass("/dashboard")} onClick={() => setIsOpen(false)}>Dashboard</Link>
-            <Link to="/profile" className={activeClass("/profile")} onClick={() => setIsOpen(false)}>Profile</Link>
-            <Link to="/form" className={activeClass("/form")} onClick={() => setIsOpen(false)}>Add Movie</Link>
+            <Link to="/home" onClick={() => setIsOpen(false)}>Home</Link>
+            <Link to="/list" onClick={() => setIsOpen(false)}>Movies</Link>
+            <Link to="/dashboard" onClick={() => setIsOpen(false)}>Dashboard</Link>
+
+            {isAdmin && (
+              <Link to="/form" onClick={() => setIsOpen(false)}>Add Movie</Link>
+            )}
+
+            <Link to="/profile" onClick={() => setIsOpen(false)}>Profile</Link>
 
           </nav>
         </div>
